@@ -1,0 +1,53 @@
+h1{
+    color:darkblue ;
+    font-size:30px;
+    padding-top:5px;
+    padding-bottom:5px;
+    }
+    
+    body{
+    background-color: rgb(122, 166, 122);
+    
+    }
+    
+    div{
+    background-color: white;
+    }
+    
+    button{
+    background-color: lightskyblue;
+    color: black;
+    font-size: 20px;
+    }
+    
+    h3{
+    color: darkblue;
+    
+    }
+    #showsketch{
+    float: right;
+    }
+    
+    canvas{
+    border:5px solid white;
+    border-radius: 20px;
+    margin-top: 80px;
+    animation-name:canvasani ;
+    animation-duration:4s;
+    animation-iteration-count: infinite;
+    }
+    
+     @keyframes canvasani{
+    from{box-shadow:1px 1px 38px grey }
+    to{box-shadow: 1px 1px 38px white}
+    } 
+
+    #score{
+margin-left: 10px;
+float:left;
+
+
+    }
+    #timer{
+        margin-right: 10px;
+    }
