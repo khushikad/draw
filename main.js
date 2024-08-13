@@ -1,7 +1,7 @@
 quickdrawdataset=["airplane", "ambulance","ant", "banana", "box", "bat","binoculars"];
 random_number=Math.floor((Math.random()* quickdrawdataset.length)+1);
-console.log(random_number);
-console.log(quickdrawdataset[random_number]);
+// console.log(random_number);
+// console.log(quickdrawdataset[random_number]);
 sketch=quickdrawdataset[random_number];
 document.getElementById("sketchname").innerHTML="Draw the sketch : "+sketch;
 timer_counter = 0;
@@ -43,6 +43,9 @@ if(drawn_sketch==sketch){
 
 function update_canvas() {
     background(" rgb(122, 166, 122)");
+random_number=Math.floor((Math.random()* quickdrawdataset.length)+1);
+sketch=quickdrawdataset[random_number];
+document.getElementById("sketchname").innerHTML="Draw the sketch : "+sketch;
 }
 
 function classifyCanvas() {
@@ -54,13 +57,16 @@ function classifyCanvas() {
 function gotresults(error, results) {
     if (error) {
         console.error(error);
+    } 
+    else{ 
+        console.log(results);
+        drawn_sketch=results[0].label;
+        document.getElementById("label").innerHTML = "Label : " + results[0].label;
+        document.getElementById("confidence").innerHTML = "Confidence : " + Math.round(results[0].confidence * 100) + "%";
+        saythis = new SpeechSynthesisUtterance(results[0].label);
+        synth.speak(saythis);
     }
-    console.log(results);
-    drawn_sketch=results[0].label;
-    document.getElementById("label").innerHTML = "Label : " + results[0].label;
-    document.getElementById("confidence").innerHTML = "Confidence : " + Math.round(results[0].confidence * 100) + "%";
-    saythis = new SpeechSynthesisUtterance(results[0].label);
-    synth.speak(saythis);
+    
 }
 
 function clearcanvas() {
@@ -73,7 +79,7 @@ function clearcanvas() {
 function check_sketch() {
     timer_counter = timer_counter + 1;
     document.getElementById("timer").innerHTML = "timer" + timer_counter
-    console.log("timer_counter");
+    //console.log(timer_counter);
     if (timer_counter >= 400) {
         timer_counter = 0;
         timer_check = "completed";
